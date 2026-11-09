@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Expense Tracker</h1>
+      <p>Record what you spend and see where it goes.</p>
+    </div>
+    <div class="month-total">
+      <div class="eyebrow" id="month-name">This month</div>
+      <div class="big" id="month-sum">₹0.00</div>
+      <div class="sub" id="month-meta"></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <section class="panel" aria-labelledby="add-h">
+      <h2 id="add-h">Add expense</h2>
+      <form id="add-form" autocomplete="off">
+        <label for="f-date">Date
+          <input id="f-date" type="date" required>
+        </label>
+        <label for="f-cat">Category
+          <input id="f-cat" list="cats" placeholder="Food, Travel, Bills..." required>
+          <datalist id="cats">
+            <option value="Food"><option value="Travel"><option value="Bills"><option value="Shopping">
+            <option value="Education"><option value="Health"><option value="Entertainment"><option value="Other">
+          </datalist>
+        </label>
+        <label for="f-amt">Amount (₹)
+          <input id="f-amt" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="250" required>
+        </label>
+        <label for="f-note">Note (optional)
+          <input id="f-note" type="text" maxlength="120" placeholder="Lunch at canteen">
+        </label>
+        <button class="primary" type="submit">Add expense</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div class="stack">
+      <div class="notice" id="example-note" hidden>
+        <span>These are example entries so you can see how the tracker works.</span>
+        <button class="ghost" id="clear-examples" type="button">Clear examples</button>
+      </div>
+      <p class="warn" id="storage-warn" hidden>Your browser is blocking saved data, so entries will be lost when you close this page. Use Download CSV to keep a copy.</p>
+
+      <div class="grid2">
+        <section class="panel" aria-labelledby="cat-h">
+          <h2 id="cat-h">Spending by category</h2>
+          <div class="sub" id="cat-scope">All months</div>
+          <ul class="bars" id="cat-bars"></ul>
+        </section>
+        <section class="panel" aria-labelledby="mon-h">
+          <h2 id="mon-h">Spending by month</h2>
+          <div class="sub">Select a month to filter the list</div>
+          <ul class="bars" id="mon-bars"></ul>
+        </section>
+      </div>
+
+      <section class="panel" aria-labelledby="list-h">
+        <h2 id="list-h">All expenses</h2>
+        <div class="filters">
+          <label class="grow" for="q">Search
+            <input id="q" type="search" placeholder="Category or note">
+          </label>
+          <label class="month" for="mf">Month
+            <select id="mf"></select>
+          </label>
+        </div>
+        <ul class="list" id="list"></ul>
+        <div class="foot">
+          <strong id="list-total"></strong>
+          <button class="ghost" id="export" type="button" hidden>Download CSV</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
